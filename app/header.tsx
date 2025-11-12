@@ -7,13 +7,15 @@ const Header = () => {
         <header className='bg-white shadow-md'>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between'>
                 <div className='shrink-0'>
-                    <Image
+                    <Link href={"/"}>
+                        <Image
                         src={"/logo.png"}
                         alt='logo'
                         width={75}
                         height={75}
                         className='h-auto w-auto'
-                    />
+                        />
+                    </Link>
                 </div>
                 <nav className='flex gap-6'>
                     <Link
