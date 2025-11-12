@@ -3,12 +3,26 @@ import React, { useState } from 'react'
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import { createClient } from '@/utils/supabase/client';
 
 const Page = () => {
     const [location, setLocation] = useState("")
     const [map, setMap] = useState("")
     const [reason, setReason] = useState("")
     const [money, setMoney] = useState<number>(0)
+
+    const supabase = createClient();
+    const handleClick = async() => {
+        const {error} = await supabase.from("places").insert({
+            location: location,
+            map: map,
+            reason: reason,
+            money: money
+        })
+        if(error){
+            console.log("error", error)
+        }
+    }
 
     return (
         <div>
@@ -20,7 +34,7 @@ const Page = () => {
             <Input id="reason" value={reason} onChange={(e) => setReason(e.target.value)}/>
             <Label htmlFor="money">予算</Label>
             <Input id="money" value={money} onChange={(e) => setMoney(Number(e.target.value))}/>
-            <Button variant="outline">追加</Button>
+            <Button variant="outline" onClick={handleClick}>追加</Button>
         </div>
     )
 }
