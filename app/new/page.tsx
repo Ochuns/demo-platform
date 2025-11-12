@@ -32,8 +32,8 @@ const Page = () => {
 
         if (!map.trim()) {
             newErrors.map = "GoogleマップのURLは必須です"
-        } else if (!map.includes('maps.google') && !map.includes('goo.gl/maps')) {
-            newErrors.map = "有効なGoogleマップのURLを入力してください"
+        } else if (!map.startsWith('http')) {
+            newErrors.map = "有効なURLを入力してください"
         }
 
         if (!reason.trim()) {
